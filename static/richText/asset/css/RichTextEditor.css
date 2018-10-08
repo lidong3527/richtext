@@ -1,0 +1,397 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+/*right box*/
+.upload_box{
+    width: 320px;
+    background: #424a58;
+    height: 100%;
+    box-sizing: border-box;
+    right: 0;
+    top:0;
+    padding: 20px 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+}
+/*left box*/
+.editor_box{
+    width: calc(100% - 320px);
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+}
+/*上传文件标签 切勿显示*/
+#upload,#upload_cover{
+    display: none;
+}
+/*编辑内容最终append的区域*/
+#editor_box{
+    border: 1px solid #ccc;
+    width: 374px;
+    margin: 50px auto 0 auto;
+    text-align: center;
+    transition: 2s;
+    background: #fff;
+    min-height: 70px;
+}
+.tn-quick-input-block {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    top: 100%;
+    margin-top: 0.5em;
+    z-index: 1;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: #a0a0a1;
+    border-image: initial;
+    background: transparent;
+}
+.editor_boxlist{
+    -webkit-box-shadow: 0 0 6px rgba(63,70,82,.5);
+    -moz-box-shadow: 0 0 6px rgba(63,70,82,.5);
+    box-shadow: 0 0 6px rgba(63,70,82,.5);
+}
+.tn-page-piece {
+    position: relative;
+    padding: 20px 10px;
+}
+/*编辑文章的input*/
+#editor_input{
+    margin-top: 10px;
+    width: 374px;
+    padding: 10px;
+    height: 80px;
+    margin-bottom: 15px;
+    resize: none;
+    background: #f9f9f9;
+    min-height: 70px;
+}
+/*在上传区域的图片和视频*/
+.upload_box_image,.upload_box_video{
+    max-width:100%;
+    cursor: pointer;
+}
+/*hover事件*/
+.upload_box_image:hover,.upload_box_video:hover{
+    box-shadow: 0px 0px 20px #000;
+}
+/*进度条 box*/
+.progress{
+    margin:0;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px #ccc;
+}
+/*进度条*/
+#progress{
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    z-index: 999;
+    height: 50px;
+}
+#progress .progress{
+    height: 6px;
+}
+#progress .progress-bar{
+    background-color: #4380eb;
+}
+.progressText{
+    font-size: 14px;
+    color: #fff;
+}
+/*进度文本*/
+.progressText{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+/*编辑栏 文本*/
+.editor_position{
+    /*width: 550px;*/
+    height: 42px;
+    background: rgba(70, 79, 96, 0.95);;
+    position: absolute;
+    left:0;
+    top: 0;
+    transform: translate(-80px,-50px);
+    z-index: 99999999999999;
+    line-height: 42px;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:0 10px;
+    box-shadow: rgba(255, 255, 255, 0.4) 0px 0px 0px 1px, rgba(0, 0, 0, 0.5) 4px 4px 6px;
+    font-size: 14px;
+}
+/*编辑栏 图片+视频*/
+.editor_position_image{
+    /*width: 550px;*/
+    height: 42px;
+    background: rgba(70,79,96,.95);
+    position: absolute;
+    left:0;
+    top: 0;
+    transform: translate(30px,-50px);
+    z-index: 99999999999999;
+    line-height: 42px;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:0 10px;
+    box-shadow: rgba(255, 255, 255, 0.4) 0px 0px 0px 1px, rgba(0, 0, 0, 0.5) 4px 4px 6px;
+    font-size: 14px;
+}
+/*编辑栏内部标签*/
+.B,.U,.I,.indent{
+    padding: 5px;
+    cursor:pointer;
+}
+
+/*字体大小 行 字 的input样式*/
+#fontSize,#lineSpac,#fontSpac,#image_width, .jscolor{
+    height: 26px;
+    color: #fff;
+    text-align: center;
+    border: 1px solid #fff;
+    background: transparent;
+    padding: 0;
+    width: 45px;
+    border-radius: 4px;
+}
+
+/*字体颜色*/
+.jscolor{
+    width: 80px;
+
+}
+.font_btn{
+    padding: 0 6px;
+}
+/*预览 box*/
+/*#preview{*/
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*height: 500px;*/
+    /*transform: translate(-50%,-50%);*/
+    /*overflow: auto;*/
+    /*text-align: center;*/
+    /*width: 320px;*/
+    /*box-shadow: rgb(40, 45, 54) 0px 0px 8px;*/
+    /*background-color: #fff;*/
+    /*padding: 10px;*/
+    /*height: 96%;*/
+    /*z-index: 10000000;*/
+/*}*/
+
+/*在上传区域的图片和视频的父元素*/
+.image_box_upload{
+    max-width: 50%;
+    position: relative;
+    display: inline-block;
+    padding: 5px 8px;
+    float: left;
+}
+/*上传区域的图片删除样式*/
+.deleteImage_upload{
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    z-index: 999999;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
+.deleteImage_upload{
+    background: url("../images/delete.png");
+    background-size: 100% 100%;
+}
+.deleteImage_upload:hover{
+    background: url("../images/delete_h.png");
+    background-size: 100% 100%;
+}
+/*编辑栏的删除样式 文本*/
+#deleteLabel, #deleteLabel_image{
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*z-index: 999999;*/
+    width: 18px;
+    height: 20px;
+    /*background: white;*/
+    margin-left: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+/*编辑栏的删除样式 图片+视频*/
+
+button, input, select, textarea, .btn{
+    outline: none;
+}
+.btn-green{
+    color: #fff;
+    background-color: #7bcb96;
+    border-color: #54a06d;
+    width: 100%;
+}
+.btn-green:hover, .btn-green:active{
+    background: #58b176;
+    color: #fff;
+    outline: none;
+}
+#image_box{
+    padding: 10px 10px 30px 10px;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder{
+    color: #999;
+    font-size: 14px;
+}
+.left_line {
+    display: inline-table;
+    line-height: 32px;
+    padding: 0px 0.2em;
+    border-left: 1px solid rgb(102, 102, 102);
+}
+.op-bar-btn {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    padding: 2px 6px;
+}
+.button_line{
+    width: 374px;
+    margin: 0;
+}
+.button_btn{
+    border-radius: 4px;
+    padding: 8px 26px;
+    margin-left: 25px;
+}
+.button_btnLeft{
+    margin-left: 0;
+}
+.preview_button{
+    border: 1px solid #4380eb;
+    background: transparent;
+    color: #4380eb;
+}
+.submit_button{
+    border: 1px solid #4380eb;
+    background: #4380eb;
+    color: #fff;
+}
+.head_box{
+    border: 1px solid #ccc;
+    width: 374px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+    transition: 2s;
+    background: #fff;
+    padding: 12px;
+    min-height: 150px;
+}
+.left_part{
+    float: left;
+    width: 125px;
+    height: 125px;
+    text-align: center;
+    background: #999;
+}
+.image{
+    background: url("../images/pic_img.png");
+    background-size: 100% 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.right_part {
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+.right_part_bottom{
+    margin-bottom: 10px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.textarea_form_control{
+    min-height: 82px;
+    max-height: 82px;
+    resize: none;
+
+}
+.cover_i{
+    padding-left:5px;
+}
+.cover_i > input{
+    margin: 0 0 0 4px;
+}
+.bottom_nav{
+    position: absolute;
+    text-align: center;
+    width: calc(100% - 320px);
+    bottom: 0;
+    background: #f7f8fc;
+    padding: 10px 0;
+}
+.articleEditorCont{
+    height: calc(100% - 54px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+
+.articleEditorCont::-webkit-scrollbar, #editor_input::-webkit-scrollbar, .textarea_form_control::-webkit-scrollbar{
+    width: 6px;
+    height:12px;
+} /* 这是针对缺省样式 (必须的) */
+
+
+.articleEditorCont::-webkit-scrollbar-thumb, #editor_input::-webkit-scrollbar-thumb, .textarea_form_control::-webkit-scrollbar-thumb{
+    background-color: #ccc;
+    border-radius: 9px;
+    -webkit-border-radius: 9px;
+} /* 滑块颜色 */
+
+.articleEditorCont::-webkit-scrollbar-button, #editor_input::-webkit-scrollbar-button, .textarea_form_control::-webkit-scrollbar-button{
+    background-color: initial;
+} /* 滑轨两头的监听按钮颜色 */

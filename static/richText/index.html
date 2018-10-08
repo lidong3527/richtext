@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>富文本编辑器</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./asset/css/initStyle.css">
+  <link rel="stylesheet" href="./asset/css/RichTextEditor.css">
+  <link rel="stylesheet" href="./asset/css/generalStyle.css?v=2">
+</head>
+<body>
+<script src="../js/jscolor.js"></script>
+
+
+<div class="editor_box">
+    <div class="articleEditorCont">
+        <div class="head_box editor_boxlist">
+            <!--<div class="left_part">-->
+                <!--<div class="image" id="cover"></div>-->
+            <!--</div>-->
+            <div class="right_part">
+                <div class="title right_part_bottom"><textarea maxlength="40" type="text" id="title" class="form-control textarea_form_control" placeholder="请输入图文的标题"></textarea></div>
+                <div class="author"><input type="text" id="author" class="form-control" placeholder="请输入图文的作者"></div>
+            </div>
+        </div>
+        <div id="editor_box" class="editor_boxlist tn-page-piece"></div>
+        <textarea rows="" cols="" id="editor_input" class="tn-quick-input-block" placeholder="点击输入文字"></textarea>
+    </div>
+</div>
+
+<div class="button_line bottom_nav">
+    <button id="exit_button" class="button_btn preview_button button_btnLeft">取消编辑</button>
+    <button id="draft" class="button_btn preview_button">保存草稿</button>
+    <button id="preview_button" class="button_btn submit_button">预览</button>
+    <button id="submit" class="button_btn submit_button">正式发布</button>
+</div>
+<div class="upload_box">
+<button id="changeImage" class="btn btn-green">选择图片或视频</button>
+
+<input type="file" id="upload"/>
+<div id="image_box">
+
+</div>
+</div>
+
+
+
+
+
+<div id="progress" style="display: none;">
+<div class="progress">
+  <div class="progress-bar" style="width: 0%;"></div>
+</div>
+<div class="progressText">进度: 0%</div>
+</div>
+
+
+
+
+<div class="editor_position">
+<div>
+<span class="B">B</span>
+<span class="I">I</span>
+<span class="U">U</span>
+
+<span class="indent left_line"><span class="op-bar-btn">首行缩进</span></span>
+<span class="fontSize left_line"><span class="font_btn">大小</span><input id="fontSize" type="number"></span>
+<span class="fontColor left_line"><span class="font_btn">颜色</span><input id="jscolor" class="jscolor" value="000"></span>
+<span class="lineSpac left_line"><span class="font_btn">行间距</span><input id="lineSpac" type="number"></span>
+<span class="fontSpac left_line"><span class="font_btn">字间距</span><input id="fontSpac" type="number"></span>
+<span class="delete left_line"><img id="deleteLabel" src="./asset/images/deleteLabel.png" alt=""></span>
+</div>
+</div>
+
+
+<div class="editor_position_image">
+<div>
+<span><span class="font_btn">宽(百分比)</span><input id="image_width" value="100" type="number"></span>
+<span class="left_line cover_i"><span>设为封面</span><input type="checkbox" id="checkCover"></span>
+<span class="delete left_line"><img id="deleteLabel_image" src="./asset/images/deleteLabel.png" alt=""></span>
+</div>
+</div>
+    <div id="preview">
+        <div id="phone">
+
+        </div>
+    </div>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./asset/js/RichTextEditor.js"></script>
+</body>
+</html>

@@ -1,0 +1,844 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+a, button, input {
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-modify: read-write-plaintext-only;
+    box-shadow: none;
+    outline: none;
+
+}
+
+/*right box*/
+.upload_box {
+    width: 100%;
+    background: #fff;
+    height: 100%;
+    box-sizing: border-box;
+    right: 0;
+    top: 0;
+    padding: 10px 0 20px 15px;
+    overflow: hidden;
+    position: absolute;
+}
+
+/*left box*/
+.editor_box {
+    width: 100%;
+    /*height: calc(100% - 65px);*/
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    position: relative;
+    background: #f6f6f6;
+}
+.articleEditorCont::-webkit-scrollbar{
+    display: none;
+} /* 这是针对缺省样式 (必须的) */
+
+/*上传文件标签 切勿显示*/
+#upload, #upload_cover {
+    display: none;
+}
+
+/*编辑内容最终append的区域*/
+#editor_box {
+    width: 100%;
+    margin: 0 auto 10px;
+    text-align: left;
+    transition: 2s;
+    background: #fff;
+    /*min-height: 90px;*/
+}
+
+#editor_box .editor_text {
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.tn-quick-input-block {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    top: 100%;
+    margin-top: 0.5em;
+    z-index: 1;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: #a0a0a1;
+    border-image: initial;
+    background: transparent;
+}
+
+.editor_boxlist {
+    -webkit-box-shadow: 0 0 6px rgba(63, 70, 82, .5);
+    -moz-box-shadow: 0 0 6px rgba(63, 70, 82, .5);
+    box-shadow: 0 0 6px rgba(63, 70, 82, .5);
+}
+
+.tn-page-piece {
+    position: relative;
+    padding: 5px 10px;
+}
+
+.editorCont {
+    position: relative;
+}
+
+/*编辑文章的input*/
+#edit_div {
+    padding: 3px 5px;
+    margin: 15px 10px 10px;
+    height: auto;
+    min-height: 60px;
+    resize: none;
+    /*background: #f9f9f9;*/
+    box-shadow: none;
+    -webkit-appearance: none;
+    outline: none;
+    overflow-y: visible;
+    border: 1px dashed #a0a0a1;
+    border-image: initial;
+    background: transparent;
+    line-height: 52px;
+    font-size: 18px;
+    /*color: #a0a0a1;*/
+
+}
+
+#edit_div:empty:before {
+    content: attr(placeholder);
+    color: #333;
+}
+
+#edit_div:focus {
+    content: none;
+}
+
+/*在上传区域的图片和视频*/
+.upload_box_image {
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+    object-fit: cover;;
+}
+
+.upload_box_video {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+    object-fit: cover;;
+}
+
+/*hover事件*/
+.upload_box_image:hover, .upload_box_video:hover {
+    box-shadow: none;
+}
+
+/*进度条 box*/
+.progress {
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px #ccc;
+}
+
+/*进度条*/
+#progress {
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    z-index: 999;
+    height: 50px;
+}
+
+#progress .progress {
+    height: 6px;
+}
+
+#progress .progress-bar {
+    background-color: #4380eb;
+}
+
+.progressText {
+    font-size: 14px;
+    color: #fff;
+}
+
+/*进度文本*/
+.progressText {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/*编辑栏 文本*/
+.editor_position {
+    display: none;
+    /*width: 550px;*/
+    /*background: #424A57 ;*/
+    position: absolute;
+    /*top: 0;*/
+    bottom: 54px;
+    transform: translateY(-50px);
+    z-index: 10;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 14px;
+    right: 6px !important;
+    /*overflow-x: auto;*/
+}
+
+.right_cont {
+    background: #424A57;
+    line-height: 26px;
+    padding: 6px 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+/*编辑栏 图片+视频*/
+.editor_position_image {
+    /*width: 550px;*/
+    height: 38px;
+    /*background: rgba(70, 79, 96, .95);*/
+    position: absolute;
+    right: 6px;
+    top: 0;
+    transform: translateY(-50px);
+    z-index: 10;
+    line-height: 38px;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0 10px;
+    /*box-shadow: rgba(255, 255, 255, 0.4) 0px 0px 0px 1px, rgba(0, 0, 0, 0.5) 4px 4px 6px;*/
+    font-size: 14px;
+}
+
+.editor_position_image .cover_i .font_btn:hover, .editor_position_image .cover_i .font_btn.active {
+    background: none;
+}
+
+.editor_position_image .fontSize_cont {
+    left: -3px !important;
+    width: 158px !important;
+    padding: 0 5px;
+}
+
+.previewEditArea {
+    padding: 3px 5px;
+    border-radius: 2px;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+#checkCover {
+    margin-top: 0 !important;
+}
+
+/*编辑栏内部标签*/
+/*.B, .U, .I, .indent {*/
+/*padding: 5px;*/
+/*cursor: pointer;*/
+/*}*/
+
+/*字体大小 行 字 的input样式*/
+#fontSize, #lineSpac, #fontSpac, #image_width, .jscolor {
+    height: 26px;
+    line-height: 26px;
+    color: #fff;
+    text-align: center;
+    border: 1px solid #fff;
+    background: transparent;
+    padding: 0;
+    width: 45px;
+    border-radius: 4px;
+}
+
+/*字体颜色*/
+.jscolor {
+    width: 80px;
+
+}
+
+.font_btn {
+    padding: 0 6px;
+    display: inline-block;
+}
+
+/*预览 box*/
+/*#preview{*/
+/*position: absolute;*/
+/*top: 50%;*/
+/*left: 50%;*/
+/*height: 500px;*/
+/*transform: translate(-50%,-50%);*/
+/*overflow: auto;*/
+/*text-align: center;*/
+/*width: 320px;*/
+/*box-shadow: rgb(40, 45, 54) 0px 0px 8px;*/
+/*background-color: #fff;*/
+/*padding: 10px;*/
+/*height: 96%;*/
+/*z-index: 10000000;*/
+/*}*/
+
+/*在上传区域的图片和视频的父元素*/
+.image_box_upload {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    display: inline-block;
+    float: left;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 0 20px 15px 0;
+    border-radius: 4px;
+    resize: both;
+}
+
+/*上传区域的图片删除样式*/
+.deleteImage_upload {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    z-index: 999999;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.deleteImage_upload {
+    background: url("../images/del-icon.png");
+    background-size: 100% 100%;
+}
+
+.deleteImage_upload:hover {
+    background: url("../images/del-icon.png");
+    background-size: 100% 100%;
+}
+
+/*编辑栏的删除样式 文本*/
+#deleteLabel, #deleteLabel_image {
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*z-index: 999999;*/
+    width: 16px;
+    height: 16px;
+    /*background: white;*/
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/*编辑栏的删除样式 图片+视频*/
+
+button, input, select, textarea, .btn {
+    outline: none;
+}
+
+.btn-green {
+    outline: none;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin: 0 20px 15px 0;
+    background: url("../images/add-pic.png") no-repeat;
+}
+
+.btn-green.active, .btn-green:active, .btn-green.active.focus, .btn-green.active:focus, .btn-green.focus, .btn-green:active.focus, .btn-green:active:focus, .btn-green:focus {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin: 0 20px 15px 0;
+    background: url("../images/add-pic.png") no-repeat;
+}
+
+#image_box {
+    padding: 10px 0;
+    height: 93%;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #999;
+    font-size: 14px;
+}
+
+.my_flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: left;
+}
+
+.left_line {
+    display: inline-table;
+    padding: 0px 0.4em;
+    border-left: 1px solid rgb(102, 102, 102);
+    position: relative;
+}
+.left_lineNo{
+    border-left: none;
+}
+.left_lineH{
+    line-height: 1.2;
+}
+.left_line > div {
+    position: absolute;
+    top: 36px;
+    background: #424A57;
+    /*background-color: rgba(70, 79, 96, 0.95);*/
+    /*box-shadow: rgba(255, 255, 255, 0.4) 0px 0px 0px 1px, rgba(0, 0, 0, 0.5) 4px 4px 6px;*/
+    border-radius: 6px;
+    width: 308px;
+    overflow: scroll;
+    line-height: 38px;
+    height: 38px;
+    padding: 0 6px;
+    white-space: nowrap;
+}
+.left_line > div::-webkit-scrollbar{
+    display: none;
+}
+
+.delete {
+    width: 34px;
+    border-radius: 6px;
+    padding: 6px 0;
+    border: 0;
+    text-align: center;
+    margin-right: 5px;
+    background: #424A57;
+    line-height: 26px;
+}
+
+.fontColor_cont {
+    left: -1px;
+}
+
+
+.fontColor_cont span, .defaultColor{
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    box-shadow: rgb(34, 34, 34) 0px 1px 4px;
+    border-radius: 100%;
+    transition: 0.2s;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    line-height: 25px;
+}
+.defaultColor{
+    background: #000;
+    width: 18px;
+    height: 18px;
+    border-width: 1px;
+    margin: -2px 4px 0 12px;
+}
+.fontColor .active{
+    border-radius: 50%;
+    background: #000;
+}
+
+.fontSize_cont {
+    left: -52px;
+}
+
+.fontSize_cont span {
+    padding: 6px 8px;
+}
+.B, .I, .U{
+    padding: 5px 8px;
+}
+.U{
+    text-decoration: underline;
+}
+.I{
+    font-style: oblique;
+    padding: 5px 12px;
+    margin: 0 2px;
+}
+.left_line .formal_cont {
+    width: auto !important;
+    left: 50%;
+    padding: 0 6px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.formal_cont span {
+    padding: 5px 8px;
+}
+
+.left_line .indent_cont {
+    width: 40px !important;
+    text-align: center;
+    left: 2px;
+}
+
+.active {
+    background-color: #4285F4;
+    border-radius: 2px;
+}
+
+.indent_cont img {
+    /*background: url("../images/img_indent.png") no-repeat left center;*/
+
+    padding: 6px;
+    vertical-align: middle;
+}
+
+.icon_indent {
+    width: 14px;
+    height: auto;
+    position: relative;
+    top: 1px;
+}
+.icon_indent img{
+    width: 18px;
+    position: relative;
+    top: 3px;
+}
+/*.op-bar-btn {*/
+/*position: relative;*/
+/*display: inline-block;*/
+/*vertical-align: middle;*/
+/*float: none;*/
+/*text-align: center;*/
+/*color: rgb(255, 255, 255);*/
+/*background-color: transparent;*/
+/*border-width: 0px;*/
+/*border-style: initial;*/
+/*border-color: initial;*/
+/*border-image: initial;*/
+/*padding: 2px 6px;*/
+/*}*/
+
+.button_line {
+    width: 374px;
+    margin: 0;
+}
+
+.button_btn {
+    border-radius: 4px;
+    padding: 13.5px 0;
+    margin: 0 15px;
+    width: calc(100% - 30px);
+    display: block;
+}
+
+.button_btnLeft {
+    margin-left: 0;
+}
+
+.preview_button {
+    border: 1px solid #4380eb;
+    background: transparent;
+    color: #4380eb;
+}
+
+.submit_button {
+    border: 1px solid #4380eb;
+    background: #4380eb;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.head_box {
+    width: 100%;
+    text-align: center;
+    transition: 2s;
+    background: #fff;
+    padding: 0 12px;
+    min-height: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.left_part {
+    float: left;
+    width: 125px;
+    height: 125px;
+    text-align: center;
+    background: #999;
+}
+
+.image {
+    background: url("../images/pic_img.png");
+    background-size: 100% 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.right_part {
+    float: left;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+}
+
+.right_part .author {
+    padding: 8px 0;
+}
+
+.right_part_bottom {
+    position: relative;
+    padding: 8px 0;
+}
+
+.right_part_bottom::after {
+    content: '';
+    position: absolute;
+    background-color: #e5e5e5;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1PX;
+    -webkit-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    /*border-bottom: 1px solid #e5e5e5 !important;*/
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.textarea_form_control {
+    min-height: 34px;
+    max-height: 34px;
+    resize: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.textarea_form_control:focus, .form-control:focus{
+    box-shadow: none;
+
+}
+.cover_i > input {
+    margin: 0 0 0 4px;
+}
+
+.bottom_nav {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    background: #fff;
+    padding: 10px 0;
+    z-index: 9999;
+}
+
+.articleEditorCont {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #f6f6f6;
+    padding-bottom: 75px;
+}
+
+.form-control-bottom {
+    border-bottom: none !important;
+}
+
+.articleEditorCont::-webkit-scrollbar, #editor_input::-webkit-scrollbar, .textarea_form_control::-webkit-scrollbar {
+    width: 6px;
+    height: 12px;
+}
+
+/* 这是针对缺省样式 (必须的) */
+
+.articleEditorCont::-webkit-scrollbar-thumb, #editor_input::-webkit-scrollbar-thumb, .textarea_form_control::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 9px;
+    -webkit-border-radius: 9px;
+}
+
+/* 滑块颜色 */
+
+.articleEditorCont::-webkit-scrollbar-button, #editor_input::-webkit-scrollbar-button, .textarea_form_control::-webkit-scrollbar-button {
+    background-color: initial;
+}
+
+/* 滑轨两头的监听按钮颜色 */
+
+.picAddPanel {
+    display: none;
+    width: 100%;
+    height: 230px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    left: 0;
+}
+
+.mobileEditor-head {
+    height: 44px;
+    line-height: 44px;
+    background: #fff;
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: #333;
+    padding: 0;
+    position: absolute !important;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+
+.line_public {
+    position: relative;
+}
+
+.line_public:after {
+    content: '';
+    position: absolute;
+    background-color: #e5e5e5;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: 15px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1PX;
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
+
+.addPic {
+    background: url("../images/add-img.png") no-repeat left center;
+    background-size: 19px;
+    padding-left: 23px;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 12px;
+    font-size: 16px;
+    color: #638BB7;
+    text-align: left;
+    display: inline;
+
+}
+
+.icon-return {
+    background: url("../images/retrue-icon.png") no-repeat;
+    background-size: 100% 100%;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    top: 8px;
+    left: 7px;
+    position: absolute;
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: none;
+}
+
+.image_tips {
+    font-size: 12px;
+    color: #666;
+    padding-top: 8px;
+    padding-right: 15px;
+}
+
+.tagAddPanel_bg {
+    background: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 90;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.editor-area {
+    border: 1px solid;
+    text-align: left;
+    min-height: 30px;
+}
+
+@media screen and (max-width: 320px) {
+    .left_line > div {
+        width: 290px !important;
+    }
+
+    .editor_position .fontSize_cont {
+        left: -48px;
+    }
+
+    .font_btn {
+        padding: 0 4px;
+        font-size: 13px;
+    }
+}

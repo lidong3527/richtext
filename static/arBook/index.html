@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ArBook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="asset/css/default.css"/>
+    <link rel="stylesheet" href="asset/css/index.css">
+</head>
+<body>
+
+<video id="video" playsinline=""></video>
+<img id="close" src="./asset/imgs/close.png" alt="">
+<img id="closePdf" src="./asset/imgs/close.png" alt="">
+<div id="videoDiv">
+    <!--<img id="left" src="./asset/imgs/left.png" alt="">-->
+    <video id="littleV" controls autoplay loop x5-playsinline="true" playsinline="true" webkit-playsinline="true"
+           preload="auto" >
+        <source id="video_path" src="" type="video/mp4"/>
+    </video>
+
+
+    <!--<img id="right" src="./asset/imgs/right.png" alt="">-->
+</div>
+
+<!--<div class="footer" style="display: none">-->
+<div class="footer">
+    <input type="button" value="打开摄像头" id="openCamera"/>
+    <select class="none" id="videoDevice"></select>
+</div>
+
+<div id="start">
+    <div id="center">
+        <div>点击屏幕开始扫描</div>
+    </div>
+
+    <!--<img src="./asset/imgs/start.png" alt="">-->
+</div>
+<div id="stop">
+    <div id="center2">
+        <div class="border"></div>
+        <div>停止扫描</div>
+    </div>
+</div>
+
+<div id="sharePage">
+</div>
+
+<div id="myList" class="myList">
+
+</div>
+
+<div class="openBrowser">
+    <img src='./asset/imgs/abc.png' alt=""/>
+</div>
+
+<div id="pdfIframe">
+    <iframe id="pdf_iframe" src="" frameborder="0"></iframe>
+</div>
+
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="asset/js/index.js"></script>
+<script type="text/javascript" src="asset/libs/three/three.min.js"></script>
+<script type="text/javascript" src="asset/js/adapter.js"></script>
+<script type="text/javascript" src="asset/js/webar.js"></script>
+<script type="text/javascript" src="asset/js/three-helper.js"></script>
+<script type="text/javascript" src="asset/libs/three/FBXLoader.js"></script>
+<script type="text/javascript" src="asset/libs/three/inflate.min.js"></script>
+<script type="text/javascript" src="asset/libs/three/OrbitControls.js"></script>
+<script type="text/javascript" src="asset/js/app.js"></script>
+<script type="text/javascript" src="../js/webServiceUtil.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+</body>
+</html>

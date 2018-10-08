@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+
+       <video id="from_video" width="800px" height="600px" src="kuaizi.mp4" controls="controls" loop="loop"></video>
+
+       <video width="500px" height="400px" id="webrtc_video" autoplay></video>
+       <button onclick="changeToWebRtc();">开始转换</button>
+</body>
+
+     <script>
+
+            function changeToWebRtc(){
+                var realtimeStream = document.getElementById("from_video").captureStream(30);
+                var webrtc_video = document.getElementById("webrtc_video");
+                webrtc_video.src = window.URL.createObjectURL(realtimeStream);
+            }
+
+     </script>
+</html>

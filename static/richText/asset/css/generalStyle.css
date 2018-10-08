@@ -1,0 +1,51 @@
+.editor_text{
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "Apple Color Emoji", "Emoji Symbols Font", "Segoe UI Symbol", Arial, sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    word-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.6;
+    /*字体颜色影响插件*/
+    color: #000000;
+    text-align: left;
+    border:1px solid #fff
+}
+.editor_image,.editor_video{
+    width: 100%;
+    margin: 10px auto 10px auto;
+    display: block;
+    max-width: 100%;
+}
+.editor_video{
+    object-fit: contain;
+    background: #000;
+}
+.emptyImgBg{
+    z-index: -1;
+}
+/*.editor_text:hover{*/
+    /*border: 1px dashed #4cbcd8;*/
+/*}*/
+
+/* 视频全屏和下载屏蔽 */
+
+video::-internal-media-controls-download-button {
+    display:none;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+
+video::-webkit-media-controls-panel {
+    width: calc(100% + 50px);
+}
+video::-webkit-media-controls-fullscreen-button {
+    display: none;
+}
+
+.editor_video{
+    object-fit: contain;
+    background: #000;
+    height: 200px;
+}

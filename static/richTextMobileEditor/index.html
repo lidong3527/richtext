@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布文章</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./asset/css/initStyle.css">
+    <link rel="stylesheet" href="./asset/css/RichTextEditor.css">
+    <link rel="stylesheet" href="./asset/css/generalStyle.css?v=2">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+<script type="text/javascript" src="./asset/js/jquery-3.2.1.min.js"></script>
+<script src="https://www.maaee.com/Excoord_PhoneService/js/jsbridge.js?v=18"></script>
+<script src="./asset/layer/layer.js"></script>
+
+<div class="editor_box">
+    <div class="tagAddPanel_bg"></div>
+    <div class="articleEditorCont">
+        <div class="head_box">
+
+            <!--下拉内容-->
+            <div class="picAddPanel">
+                <div class="upload_box">
+                    <input type="file" id="upload"/>
+                    <div id="image_box">
+                        <span id="appendCont"></span>
+                        <!--<button id="changeImage" class="btn btn-green"></button>-->
+                    </div>
+                    <div class="image_tips">点击已上传的图片或视频添加到文章对应位置</div>
+                </div>
+            </div>
+
+            <!--标题/作者-->
+            <div class="right_part">
+                <div class="title right_part_bottom"><textarea maxlength="40" type="text" id="title"
+                                                               class="form-control textarea_form_control"
+                                                               placeholder="请输入文章标题"></textarea></div>
+                <div class="author"><input type="text" id="author" class="form-control form-control-bottom"
+                                           placeholder="请输入作者名称"></div>
+            </div>
+
+        </div>
+
+
+        <!--<textarea rows="" cols="" id="editor_input" class="tn-quick-input-block" placeholder="请输入文章内容"></textarea>-->
+
+        <div class="editorCont">
+            <div id="editor_box" class="tn-page-piece" style="display: none"></div>
+            <div id="edit_div" class="editor-area" contenteditable="false">单击编辑内容</div>
+            <!--字体样式设置-->
+            <div class="editor_position">
+                <div class="my_flex">
+                    <div class="delete"><img id="deleteLabel" src="./asset/images/deleteLabel.png" alt=""></div>
+                    <div class="right_cont my_flex">
+                        <div class="fontColor">
+                            <div class="left_line left_lineNo">
+                                <span class="font_btn defaultColor" id="fontColor"></span>
+                                <div class="fontColor_cont dOrN" style="display: none" showFlag="false">
+                                    <span style="background-color: #4E5864" class="color_word"></span>
+                                    <span style="background-color: #000000" class="color_word"></span>
+                                    <span style="background-color: #3E3E3E" class="color_word"></span>
+                                    <span style="background-color: #F86F57" class="color_word"></span>
+                                    <span style="background-color: #619BEF" class="color_word"></span>
+                                    <span style="background-color: #8ECA66" class="color_word"></span>
+                                    <span style="background-color: #47C1A8" class="color_word"></span>
+                                    <span style="background-color: #FFFFFF" class="color_word"></span>
+                                    <span style="background-color: #A0A0A0" class="color_word"></span>
+                                    <span style="background-color: #FF8123" class="color_word"></span>
+                                    <span style="background-color: #A55BCA" class="color_word"></span>
+                                    <span style="background-color: #FFCA02" class="color_word"></span>
+                                    <span style="background-color: #FF0000" class="color_word"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fontSize">
+                            <div class="left_line left_lineNo">
+                                <span class="font_btn" id="font_Size">16</span>
+                                <div class="fontSize_cont dOrN" style="display: none" showFlag="false">
+                                    <span class="font_num fontSpan">10</span>
+                                    <span class="font_num fontSpan">12</span>
+                                    <span class="font_num fontSpan">14</span>
+                                    <span class="font_num fontSpan">16</span>
+                                    <span class="font_num fontSpan">18</span>
+                                    <span class="font_num fontSpan">20</span>
+                                    <span class="font_num fontSpan">22</span>
+                                    <span class="font_num fontSpan">24</span>
+                                    <span class="font_num fontSpan">26</span>
+                                    <span class="font_num fontSpan">28</span>
+                                    <span class="font_num fontSpan">30</span>
+                                    <span class="font_num fontSpan">32</span>
+                                    <span class="font_num fontSpan">34</span>
+                                    <span class="font_num fontSpan">36</span>
+                                    <span class="font_num fontSpan">38</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="indent">
+                            <div class="left_line  left_lineNo">
+                                <span class="font_btn" id="align">
+                                    <img class="icon_indent fontSpan" src="asset/images/img_indent.png"
+                                         showFlag="false"/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="formal">
+                            <div class="left_line left_lineNo">
+                                    <span class="B fontSpan">B</span>
+                                    <span class="I fontSpan">I</span>
+                                    <span class="U fontSpan">U</span>
+                            </div>
+
+                        </div>
+                        <!--<span class="lineSpac left_line"><span class="font_btn">行间距</span><input id="lineSpac" type="number"></span>-->
+                        <!--<span class="fontSpac left_line"><span class="font_btn">字间距</span><input id="fontSpac" type="number"></span>-->
+                        <div class="section">
+                            <div class="left_line left_lineNo">
+                                <span id='paragraph' class="font_btn">确定</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="left_line left_lineH">
+                                <span class="font_btn hide_editor_position">隐藏</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--添加图片/视频-->
+        <div id="changeImage" class="addPic">
+            添加图片或视频
+        </div>
+    </div>
+    <!--底部发布-->
+    <div class="button_line bottom_nav">
+        <span id="submit" class="button_btn submit_button">发布</span>
+    </div>
+</div>
+
+<!--上传进度条-->
+<div id="progress" style="display: none;">
+    <div class="progress">
+        <div class="progress-bar" style="width: 0%;"></div>
+    </div>
+    <div class="progressText">进度: 0%</div>
+</div>
+
+<!--图片宽高比-->
+<div class="editor_position_image">
+    <div class="my_flex">
+        <div class="delete"><img id="deleteLabel_image" src="./asset/images/deleteLabel.png" alt=""></div>
+        <div class="right_cont my_flex">
+            <div class="widthDiv">
+                <div class="left_line">
+                    <span class="font_btn" id="WorH">宽度</span>
+                    <!--<input id="image_width" value="100" type="number">-->
+                    <div class="fontSize_cont dOrN WorH" style="display: none" showFlag="false">
+                        <span class="ratio">50%</span>
+                        <span class="ratio">80%</span>
+                        <span class="ratio">100%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cover_i">
+                <div class="left_line">
+                    <span class="font_btn">设为封面</span><input type="checkbox" id="checkCover">
+                </div>
+            </div>
+            <div>
+                <div class="left_line">
+                    <span class="font_btn hide_editor_position_image">隐藏</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--预览(暂不用)-->
+<div id="preview">
+    <div id="phone">
+
+    </div>
+</div>
+
+<script src="./asset/js/webServiceUtil.js"></script>
+<script type="text/javascript" src="./asset/js/RichTextEditor.js"></script>
+</body>
+</html>
